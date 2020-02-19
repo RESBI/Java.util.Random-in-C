@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 // Java's config.
-#define M 281474976710655LL // 2**48 - 1
+#define M 281474976710656LL // 2**48
 #define A 25214903917LL
 #define C 11LL
 
@@ -19,7 +19,13 @@ int nextInt(int n, long long *seed);
   }
  */
 int next(int bits, long long *seed) {
-  seed[0] = (seed[0] * A + C) & M;
+  //printf("RndSeed: %lld\n", seed[0]);
+  //seed[0] *= A;
+  //seed[0] += C;
+  //seed[0] %= M;
+  //printf("RndSeed: %lld\n", seed[0]);
+  //printf("%d\n", (int)(seed[0] >> (48 - bits)));
+  seed[0] = (seed[0] * A + C) % M;
   return (int)(seed[0] >> (48 - bits));
 }
 
@@ -32,7 +38,7 @@ int next(int bits, long long *seed) {
   }
  */
 void setSeed(long long *seed) {
-  seed[0] = (seed[0] ^ A) & M;
+  seed[0] = (seed[0] ^ A) % M;
 }
 
 /*
@@ -56,15 +62,16 @@ void setSeed(long long *seed) {
 int nextInt(int n, long long *seed) {
   int bits;
   int val;
-
+  // Have no chance to do this in this program, so just delete it.
+  /*
   if ((n & (-n)) == n) {
     return (int)((n * (long long)next(31, seed)) >> 31);
   }
-  
+  */  
   do {
+    //printf("RndSeed: %lld\n", seed[0]);
     bits = next(31, seed);
     val = bits % n;
-    //printf("val=%d, bits=%d\n", val, bits);
   } while ((bits - val + (n - 1)) < 0);
   return val;
 }
