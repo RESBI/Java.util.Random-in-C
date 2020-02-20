@@ -6,9 +6,9 @@
 #define A 25214903917LL
 #define C 11LL
 
-int next(int bits, long long *seed);
-void setSeed(long long *seed);
-int nextInt(int n, long long *seed);
+unsigned long long next(int bits, unsigned long long *seed);
+void setSeed(unsigned long long *seed);
+int nextInt(int n, unsigned long long *seed);
 
 /*
   Java code:
@@ -18,7 +18,7 @@ int nextInt(int n, long long *seed);
     return (int) (seed >>> (48 - bits));
   }
  */
-int next(int bits, long long *seed) {
+unsigned long long next(int bits, unsigned long long *seed) {
   //printf("RndSeed: %lld\n", seed[0]);
   //seed[0] *= A;
   //seed[0] += C;
@@ -26,7 +26,7 @@ int next(int bits, long long *seed) {
   //printf("RndSeed: %lld\n", seed[0]);
   //printf("%d\n", (int)(seed[0] >> (48 - bits)));
   seed[0] = (seed[0] * A + C) % M;
-  return (int)(seed[0] >> (48 - bits));
+  return (seed[0] >> (48 - bits));
 }
 
 /*
@@ -37,7 +37,7 @@ int next(int bits, long long *seed) {
     haveNextNextGaussian = false;
   }
  */
-void setSeed(long long *seed) {
+void setSeed(unsigned long long *seed) {
   seed[0] = (seed[0] ^ A) % M;
 }
 
@@ -59,9 +59,8 @@ void setSeed(long long *seed) {
     return val;
   }
  */
-int nextInt(int n, long long *seed) {
-  int bits;
-  int val;
+int nextInt(int n, unsigned long long *seed) {
+  unsigned long long bits, val;
   // Have no chance to do this in this program, so just delete it.
   /*
   if ((n & (-n)) == n) {
@@ -72,6 +71,6 @@ int nextInt(int n, long long *seed) {
     //printf("RndSeed: %lld\n", seed[0]);
     bits = next(31, seed);
     val = bits % n;
-  } while ((bits - val + (n - 1)) < 0);
+  } while ((long long)(bits - val + (n - 1)) < 0);
   return val;
 }
