@@ -4,8 +4,6 @@
 ## Actually, I wrote it in some weird way. So maybe using this lib is a difficult to you. 
 ## And, some ways to use it is different from native java lib.
 ## But it is fine, it works well(seems to be...). I'm just copyed almost all the codes from Java.
-# "slime.c"
+# "?????"
 ## This is an example program to show you how to use this lib.
-## this program is used to calculate the locations of Slime chunks.
-## If you don't know what the "Slime chunk" is, please google "Minecraft".
 ## But nobody will see this repository, I guess.
