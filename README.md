@@ -1,3 +1,4 @@
+# DO NOT USE IT!!!
 # Java.util.Random-in-C
 ## As the title, this is a random number generating Algorithm called LCG (Linear congruential generator) which is used in Java's lib, I wrote it in C.
 ## The lib file is "lcg.c". You could just include it when you want to use.
